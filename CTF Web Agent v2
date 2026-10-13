@@ -1,0 +1,19 @@
+这版新增了什么？
+功能 ：
+ 1.源码审计 ：检查SQL查询、动态模板、文件路径、命令执行等风险线索
+ 2.HTTP 检查： 收集本机页面、响应头、链接、脚本和表单信息
+ 3.证据关联： 记录规则编号、文件行号、证据和复核建议
+ 4.自动报告: 同时生成 JSON 和 Markdown 报告
+ 5.可选AI复核: 配置 API 后，让模型辅助分析发现和误报
+运行方法
+解压 ZIP 后，在项目目录运行：
+python ctf_web_agent.py --source ./challenge-source --no-llm
+如果题目已经运行在本机的 8080 端口：
+python ctf_web_agent.py --url http://127.0.0.1:8080/ --no-llm
+同时分析源码和本机 Web 服务：
+python ctf_web_agent.py --source ./challenge-source --url http://127.0.0.1:8080/ --no-llm
+
+默认生成：
+ctf-web-report.json
+ctf-web-report.md
+需要说明： 目前它是带有启发式规则和可选 LLM 复核的分析 Agent，还不是自动解题器。它会指出可疑代码和下一步检查方向，但不会自动证明漏洞成立，也不会自动拿到 Flag。
